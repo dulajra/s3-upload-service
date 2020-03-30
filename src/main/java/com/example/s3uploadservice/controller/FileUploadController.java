@@ -39,12 +39,11 @@ public class FileUploadController {
         Response response = new Response();
 
         if (outputFileName != null) {
-            response.setStatus(true);
+            response.setSuccess(true);
             response.setFileName(outputFileName);
-            LOGGER.info("Upload success. Output filename: {}", outputFileName);
+            LOGGER.info("Upload success. Output filename: {}", response);
         } else {
-            response.setStatus(false);
-            response.setFileName(null);
+            response.setSuccess(false);
             LOGGER.error("Upload failed");
         }
 

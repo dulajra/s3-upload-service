@@ -1,6 +1,9 @@
 package com.example.s3uploadservice.service;
 
+import com.example.s3uploadservice.controller.FileUploadController;
 import com.example.s3uploadservice.util.FileUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -12,6 +15,8 @@ import java.util.UUID;
 
 @Service
 public class FileUploadService {
+
+    private final Logger LOGGER = LoggerFactory.getLogger(FileUploadService.class);
 
     private static final String TEMP_FILE_DIR = "/tmp/";
     private static final String OUTPUT_S3_NAME = "vidcloudoutput";
@@ -52,7 +57,7 @@ public class FileUploadService {
             s3Service.upload(OUTPUT_S3_NAME, outputFilename, file);
             return outputFilename;
         } catch (IOException e) {
-            e.printStackTrace();
+            LOGGER.error("Error occurred while handling upload.", e);
             return null;
         }
     }
