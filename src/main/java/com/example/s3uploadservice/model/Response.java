@@ -1,4 +1,4 @@
-package com.example.s3uploadservice;
+package com.example.s3uploadservice.model;
 
 public class Response {
 
